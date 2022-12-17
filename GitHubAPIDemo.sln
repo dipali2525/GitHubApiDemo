@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitHubAPIDemo.Core.Unit.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubAPIDemo.Core", "src\GitHubAPIDemo.Core\GitHubAPIDemo.Core.csproj", "{D93F1241-5073-4AEB-BCA6-AB95C91335D3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubAPIDemo.Infrastructure", "src\GitHubAPIDemo.Infrastructure\GitHubAPIDemo.Infrastructure.csproj", "{09A0543D-F290-499C-8FCD-C207531D27A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D93F1241-5073-4AEB-BCA6-AB95C91335D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D93F1241-5073-4AEB-BCA6-AB95C91335D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D93F1241-5073-4AEB-BCA6-AB95C91335D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09A0543D-F290-499C-8FCD-C207531D27A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09A0543D-F290-499C-8FCD-C207531D27A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09A0543D-F290-499C-8FCD-C207531D27A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09A0543D-F290-499C-8FCD-C207531D27A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
