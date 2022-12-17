@@ -1,6 +1,9 @@
-﻿namespace GitHubAPIDemo.Core.Unit.Test
+﻿using GitHubAPIDemo.Core.Contracts;
+using GitHubAPIDemo.Core.Models;
+
+namespace GitHubAPIDemo.Core.Services
 {
-    internal class GitHubService
+    public class GitHubService
     {
         private readonly IGitHubRepository _gitHubRepository;
 
@@ -9,7 +12,7 @@
             _gitHubRepository = gitHubRepository;
         }
 
-        internal async Task<List<GitHubUserInfo>> GetUsersInfo(List<string> userNames)
+        public async Task<List<GitHubUserInfo>> GetUsersInfo(List<string> userNames)
         {
             var users = new List<GitHubUserInfo>();
             var distinctUserNames = userNames.Distinct();
@@ -17,21 +20,11 @@
             {
                 var user = await _gitHubRepository.GetUserInfo(userName);
 
-                if(user is not null)
+                if (user is not null)
                     users.Add(user);
             }
 
             return users.OrderBy(u => u.Name).ToList();
         }
-    }
-
-    public class GitHubUserInfo
-    {
-        public string Name { get; set; }
-        public string Login { get; set; }
-        public string Company { get; set; }
-        public int NumberOfFollowers { get; set; }
-        public int NumberOfPublicRepositories { get; set; }
-        public double AverageNumberOfFollowers { get; set; }
     }
 }

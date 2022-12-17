@@ -1,4 +1,8 @@
-﻿namespace GitHubAPIDemo.Core.Unit.Test
+﻿
+
+using GitHubAPIDemo.Core.Models;
+
+namespace GitHubAPIDemo.Core.Contracts
 {
     public interface IGitHubRepository
     {

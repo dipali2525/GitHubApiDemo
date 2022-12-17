@@ -1,3 +1,6 @@
+using GitHubAPIDemo.Core.Contracts;
+using GitHubAPIDemo.Core.Models;
+using GitHubAPIDemo.Core.Services;
 using Moq;
 
 namespace GitHubAPIDemo.Core.Unit.Test
