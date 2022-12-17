@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace GitHubAPIDemo.Infrastructure
 {
 
-    internal class GitHubRepository : IGitHubRepository
+    public class GitHubRepository : IGitHubRepository
     {
         private readonly HttpClient _httpClient;
 
