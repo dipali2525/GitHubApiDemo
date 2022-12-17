@@ -2,17 +2,30 @@
 {
     internal class GitHubService
     {
-        public GitHubService()
+        private readonly IGitHubRepository _gitHubRepository;
+
+        public GitHubService(IGitHubRepository gitHubRepository)
         {
+            _gitHubRepository = gitHubRepository;
         }
 
-        internal GitHubUserInfo GetUserData(string userName)
+        internal async Task<List<GitHubUserInfo>> GetUsersInfo(List<string> userNames)
         {
-            return new GitHubUserInfo();
+            var users = new List<GitHubUserInfo>();
+            var distinctUserNames = userNames.Distinct();
+            foreach (var userName in distinctUserNames)
+            {
+                var user = await _gitHubRepository.GetUserInfo(userName);
+
+                if(user is not null)
+                    users.Add(user);
+            }
+
+            return users.OrderBy(u => u.Name).ToList();
         }
     }
 
-    internal class GitHubUserInfo
+    public class GitHubUserInfo
     {
         public string Name { get; set; }
         public string Login { get; set; }
