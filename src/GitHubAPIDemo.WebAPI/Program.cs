@@ -2,17 +2,12 @@ using GitHubAPIDemo.Core.Contracts;
 using GitHubAPIDemo.Core.Services;
 using GitHubAPIDemo.Infrastructure;
 using Microsoft.Net.Http.Headers;
-using System.Net.Http;
-using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers()
-      .AddJsonOptions(options =>
-                    options.JsonSerializerOptions.PropertyNamingPolicy
-                     = JsonNamingPolicy.CamelCase); ;
+builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -24,9 +19,9 @@ builder.Services.AddHttpClient<IGitHubClient, GitHubClient>(_httpClient =>
     _httpClient.BaseAddress = new Uri("https://api.github.com/");
     _httpClient.DefaultRequestHeaders.Add(
          HeaderNames.Accept, "application/vnd.github.v3+json");
+    _httpClient.DefaultRequestHeaders.Add(HeaderNames.UserAgent,"request");
     _httpClient.DefaultRequestHeaders.Add(
-        HeaderNames.UserAgent, "HttpRequestsSample");
-    _httpClient.DefaultRequestHeaders.Add(HeaderNames.Authorization, "Bearer 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");
+        "X-GitHub-Api-Version", "2022-11-28");
 });
 
 var app = builder.Build();

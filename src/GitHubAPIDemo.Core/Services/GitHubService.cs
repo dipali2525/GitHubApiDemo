@@ -1,5 +1,6 @@
 ﻿using GitHubAPIDemo.Core.Contracts;
 using GitHubAPIDemo.Core.Models;
+using System.Diagnostics;
 
 namespace GitHubAPIDemo.Core.Services
 {
@@ -14,17 +15,12 @@ namespace GitHubAPIDemo.Core.Services
 
         public async Task<List<GitHubUserInfo>> GetUsersInfo(List<string> userNames)
         {
-            var users = new List<GitHubUserInfo>();
-            var distinctUserNames = userNames.Distinct();
-            foreach (var userName in distinctUserNames)
-            {
-                var user = await _gitHubRepository.GetUserInfo(userName);
+            var distinctUserNames = userNames.Distinct().ToAsyncEnumerable();
 
-                if (user is not null)
-                    users.Add(user);
-            }
-
-            return users.OrderBy(u => u.Name).ToList();
+            var userlist = distinctUserNames.SelectAwait(async username => await  _gitHubRepository.GetUserInfo(username))
+                .Where(t => t is not null);
+            var users = await userlist.OrderBy(t => t.Name).ToListAsync();
+            return users;
         }
     }
 }
